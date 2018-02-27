@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block div %}
+
+<div id="menu">
+				<ul>
+
+                    <li><a href="{% url 'events' %}">Shows</a></li>
+					<li><a href="{% url 'bands' %}">Locals</a></li>
+					<li><a href="{% url 'venues' %}">Venues</a></li>
+					<li><a href="{% url 'livepics' %}">Live Pics</a></li>
+                    {% if user is not authenticated %}
+                    <li><a href="{% url 'signup' %}">Login</a></li>
+                    {% endif %}
+                    {% if user is authenticated %}
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% endif %}
+
+				</ul>
+			</div>
+{% endblock %}

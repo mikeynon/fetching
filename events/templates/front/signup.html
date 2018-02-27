@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{#{% block div %}#}
+{#    {% if user.is_authenticated %}#}
+{#    <p>Welcome, {{ user.username }}  <a href="{% url 'logout' %}">[logout]</a></p>#}
+{#{% else %}#}
+{#    <p>Welcome, Guest </p>#}
+{##}
+{#  <h2>Login</h2>#}
+{#        {% block p %}#}
+{#  <form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Login</button>#}
+{#  </form>#}
+{#        {% endblock %}#}
+{#  <h2>Sign up</h2>#}
+{#        {% block y %}#}
+{#  <form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Sign up</button>#}
+{#  </form>#}
+{#{% endblock %}#}
+{#{% endif %}#}
+{##}
+{#{% endblock %}#}
+{% load static %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </form>
+{% endblock %}

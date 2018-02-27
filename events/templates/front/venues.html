@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- AUTHOR: VINNY./SASHA.
+    Features:
+    Bootstrap carousel slideshow!
+     Images with sources linked in the JS TAB.
+    Custom cursor.
+    My signature changing backgrounds. -->
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>Using Bootstrap!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    </head>
+    <body>
+    <style>
+        html,
+    body {
+    font-size: 13pt;
+    }
+
+    /* Tried to resize Carousel items here as well. */
+    .carousel .item > img {
+        margin: 0 auto;
+        display: block;
+        height: 0px;
+        line-height: 1;
+    }
+        a, h1 {
+            color:white;
+            text-shadow: black;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: none;
+    }</style>
+    <!-- Linking to external files - Bootstrap is linked here, to enable us to make a code using it. -->
+
+    <!-- Slideshow structure begins here. myCarousel ids it as the slideshow here, <li> defines each slide here. Add more to make more slides.
+    Active defines the first slide the page loads to. -->
+    <div class="container" style="width:80%;height:600px">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+            <!-- Setting the items in each slide. -->
+    </ol>
+        <!-- First image. -->
+      <div class="carousel-inner">
+      <div class="item active"
+          style="max-width: 600px; margin: 0 auto">
+          <!-- We set the max image size here as well as establish the first slide to load. -->
+      <img class="img-responsive center-block">
+      <!-- We align the responsive image to the center. -->
+      <img src="{% static "images/crystalballroompic.jpg" %}" alt="Slideshow image here." style="width:100%; height:100%">
+        <div class="carousel-caption">
+        <!-- Optional, just to give your slide text. -->
+            <a href="http://www.crystalballroompdx.com/">
+                <h1>Crystal Ballroom</h1>
+        </a>
+            </div>
+      </div>
+
+        <!-- Second image. Same notes apply to this slide, so on and so forth. -->
+      <div class="item"
+          style="max-width: 600px; margin: 0 auto">
+        <img class="img-responsive center-block">
+        <img src="{% static "images/theknowpic.jpg" %}" alt="Slideshow image here." style="width:100%;height:100%">
+        <div class="carousel-caption">
+             <a href="http://www.theknowpdx.com/ ">
+                 <h1>The Know</h1>
+        </a>
+            </div>
+      </div>
+
+        <!-- Third image. -->
+      <div class="item" style="max-width: 600px; margin: 0 auto">
+           <img class="img-responsive center-block">
+            <img src="{% static "images/blackwaterpic.jpg" %}" alt="Slideshow image here." style="width:100%;height:100%">
+        <div class="carousel-caption">
+           <a href="https://www.facebook.com/Black-Water-1576782595871962/">
+               <h1>Black Water</h1>
+        </a>
+            </div>
+      </div>
+
+        <!-- Fourth image. -->
+      <div class="item"
+          style="max-width: 600px; margin: 0 auto">
+            <img class="img-responsive center-block">
+            <img src="{% static "images/akabhousepic.jpeg" %}" alt="Slideshow image here." style="width:100%;height:100%">
+        <div class="carousel-caption">
+            <a>  <h1>A.K.A.B. House <br>and <br>the Core House</h1>
+            </a>
+        </div>
+      </div>
+
+        <!-- Fifth image. -->
+        <div class="item"
+          style="max-width: 600px; margin: 0 auto">
+             <img class="img-responsive center-block">
+             <img src="{% static "images/hawthornepic.jpg" %}" alt="Slideshow image here." style="width:100%;height:100%">
+        <div class="carousel-caption">
+            <a href="http://hawthornetheatre.com/">
+                <h1>Hawthorne Theatre</h1>
+        </a>
+            </div>
+            </div>
+
+      <!-- Sixth image. -->
+        <div class="item"
+          style="max-width: 600px; margin: 0 auto">
+             <img class="img-responsive center-block">
+             <img src="{% static "images/wonderballroompic.jpg" %}" alt="Slideshow image here." style="width:100%;height:100%">
+        <div class="carousel-caption">
+            <a href="https://www.wonderballroom.com/">
+                <h1>Wonder Ballroom</h1>
+        </a>
+            </div>
+            </div>
+          <!-- Sixth image. -->
+
+            </div>
+
+      <!-- Slideshow controls! -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <!-- The controls are displayed at the top left and right of the page. Left carousel control starts here. -->
+      <span class="glyphicon glyphicon-backward"></span>
+      <!-- Deciding what the control symbol will be. -->
+      <span class="sr-only">pre</span>
+    </a>
+
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <!-- Right controls start here. -->
+      <span class="glyphicon glyphicon-forward"></span>
+      <span class="sr-only">next</span>
+    </a>
+        </div>
+      </div>
+    </div>
+    </body>
+    {% endblock %}

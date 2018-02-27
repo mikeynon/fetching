@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+    {% block css %}
+        #calendar table {
+    width: 100%;
+}
+
+#calendar table tr th {
+    text-align: center;
+    font-size: 16px;
+    background-color: #316497;
+    color: #99ccff;
+}
+
+#calendar table tr td {
+    width: 10%;
+    border: 1px solid #555;
+    vertical-align: top;
+    height: 120px;
+    padding: 2px;
+}
+
+#calendar td.noday {
+    background-color: #eee;
+}
+
+#calendar td.filled {
+    background-color: #99ccff;
+}
+
+#calendar td.today {
+    border: 4px solid #316497;
+}
+
+#calendar .dayNumber {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+#calendar a {
+    font-size: 10px;
+}
+        {% endblock %}
+    {% block content %}
+<h1>Calendar</h1>
+<table width="100%">
+    <tr>
+        <td width="20%" align="left">
+          &lt;&lt; <a href="/calendar/{{PreviousYear}}/{{PreviousMonth}}/">{{PreviousMonthName}} {{PreviousYear}}</a>
+        </td>
+        <td width="20%" align="left">
+          &lt;&lt; <a href="/calendar/{{YearBeforeThis}}/{{Month}}/">{{MonthName}} {{YearBeforeThis}}</a>
+        </td>
+        <td width="20%" align="center"><a href="/calendar">Today</a></td>
+        <td width="20%" align="right">
+          <a href="/calendar/{{YearAfterThis}}/{{Month}}/">{{MonthName}} {{YearAfterThis}}</a> &gt;&gt;
+        </td>
+        <td width="20%" align="right">
+          <a href="/calendar/{{NextYear}}/{{NextMonth}}/">{{NextMonthName}} {{NextYear}}</a> &gt;&gt;
+        </td>
+    </tr>
+</table>
+<div id="calendar">
+  {{Calendar}}
+</div>
+{%  endblock %}
+{#{% extends 'base.html' %}#}
+{#<head>#}
+{#<title>Promoters Circle</title>#}
+{##}
+{#<!-- CSS -->#}
+{#<style>#}
+{#/* Force scrollbars onto browser window */#}
+{#body {#}
+{#margin-bottom: 200%;#}
+{#}#}
+{##}
+{#/* Box styles */#}
+{#.myBox {#}
+{#border: none;#}
+{#padding: 5px;#}
+{#font: 24px/36px sans-serif;#}
+{#width: 200px;#}
+{#height: 200px;#}
+{#overflow: scroll;#}
+{#}#}
+{##}
+{#tr {#}
+{#    display: block;#}
+{#}#}
+{#.week {#}
+{#    display:flex;#}
+{#    flex-direction: row;#}
+{#    width:100%;#}
+{#    height: 150px;#}
+{#    border: 1px;#}
+{#}#}
+{##}
+{#td {#}
+{#    border: 1px#}
+{#}#}
+{##}
+{#/* Scrollbar styles */#}
+{#::-webkit-scrollbar {#}
+{#width: 12px;#}
+{#height: 12px;#}
+{#}#}
+{##}
+{#::-webkit-scrollbar-track {#}
+{#border: 1px solid yellowgreen;#}
+{#border-radius: 10px;#}
+{#}#}
+{##}
+{#::-webkit-scrollbar-thumb {#}
+{#background: yellowgreen;#}
+{#border-radius: 10px;#}
+{#}#}
+{##}
+{#::-webkit-scrollbar-thumb:hover {#}
+{#background: #88ba1c;#}
+{#}#}
+{#</style>#}
+{#</head>#}
+{#{% block content %}#}
+{#<body>#}
+{##}
+{#<!-- HTML -->#}
+{#<div class="myBox">#}
+{#    <tr class="month">#}
+{#<tr class="title">#}
+{#    <td class="monthname">{{ month }}</td></tr>#}
+{#<tr class="week">#}
+{#    <td>M</td>#}
+{#    <td>T</td>#}
+{#    <td>W</td>#}
+{#    <td>Th</td>#}
+{#    <td>F</td>#}
+{#    <td>S</td>#}
+{#    <td>Su</td>#}
+{#</tr>#}
+{#    <tr class="week">#}
+{#    <td>M</td>#}
+{#    <td>T</td>#}
+{#    <td>W</td>#}
+{#    <td>Th</td>#}
+{#    <td>F</td>#}
+{#    <td>S</td>#}
+{#    <td>Su</td>#}
+{#</tr>#}
+{#<tr class="week">#}
+{#    <td>M</td>#}
+{#    <td>T</td>#}
+{#    <td>W</td>#}
+{#    <td>Th</td>#}
+{#    <td>F</td>#}
+{#    <td>S</td>#}
+{#    <td>Su</td>#}
+{#</tr>#}
+{#<tr class="week">#}
+{#    <td>M</td>#}
+{#    <td>T</td>#}
+{#    <td>W</td>#}
+{#    <td>Th</td>#}
+{#    <td>F</td>#}
+{#    <td>S</td>#}
+{#    <td>Su</td>#}
+{#</tr>#}
+{#    <tr class="week">#}
+{#    <td>M</td>#}
+{#    <td>T</td>#}
+{#    <td>W</td>#}
+{#    <td>Th</td>#}
+{#    <td>F</td>#}
+{#    <td>S</td>#}
+{#    <td>Su</td>#}
+{#</tr>#}
+{#</div>#}
+{##}
+{#</body>#}
+{#{% endblock %}#}
+
