@@ -12,6 +12,7 @@ Released   : 20120513
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -25,17 +26,21 @@ Released   : 20120513
 {#	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
 {% block css %}{% endblock %}
 </head>
+
+
+
 <body>
-<div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
 				<h1><a href="{% url 'home' %}" class="logo">HxC<br>PDX </a></h1>
 				<!--<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>-->
 			</div>
-        {% block div %}
-        {% endblock %}
-			<div id="menu">
+            <div>
+{#        {% block div %}#}
+{#        {% endblock %}#}
+			</div>
+            <div id="menu">
 				<ul>
                     <li><a href="{% url 'shows' %}">Shows</a></li>
                     <li><a href="{% url 'livepics' %}">Live Pics and Flyers</a></li>
@@ -53,42 +58,41 @@ Released   : 20120513
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
+{#                    <div style="clear: both;">&nbsp;</div>#}
 					<!-- POST div to inject body posts (instagram, user input, big calendar, local bands, live pics, venues -->
 {% block content %}
 {% endblock %}
 					<!-- end POST div to inject-->
-					<div style="clear: both;">&nbsp;</div>
+
                 {% if user.is_authenticated %}<a href="{% url 'logout' %}">[logout]</a>{% endif %}
 				</div>
 				<!-- end #content -->
 <div id="sidebar" style="float:left;">
-							<ul><br><br>
-                                {% if user.is_authenticated %}
-                                    <h2>Welcome, {{ user.username }}</h2>
+    <br><br>
+        {% if user.is_authenticated %}
+            <h2>Welcome, {{ user.username }}</h2>
 {% else %}
-                                    {% block login %}
-                                    <h2>
-                                        <a href='{% url 'login' %}' onclick="$(this).closest('login').submit()">
-                                            Login
-                                        </a>
-                                    </h2>
-                                    {% endblock %}
-							</ul>
-						</li>
-					</ul>
-				</div>
+            {% block login %}
+            <h2>
+                <a href='{% url 'login' %}' onclick="$(this).closest('login').submit()">
+                    Login
+                </a>
+            </h2>
+            {% endblock %}
+{% endif %}
+</div>
 {#  </form>#}
 {#  <form method="post">#}
 {#    {% csrf_token %}#}
 {#    {{ form.as_p }}#}
 {#      <h2><a href='{% url 'signup' %}' onclick="$(this).closest('signup').submit()">Signup</a></h2>#}
 {#  </form>#}
-{% endif %}
-				<!-- end #sidebar -->
-				<div style="clear: both;">&nbsp;</div>
-			</div>
+
 		</div>
 	</div>
+				<!-- end #sidebar -->
+				<div style="clear: both;">&nbsp;</div>
+
 	<!-- end #page -->
 	<div id="footer">
 		<a href="https://www.instagram.com/hxcpdx/" id="insta">
@@ -117,7 +121,7 @@ Released   : 20120513
         </a>
 		<p>&copy; HXCPDX. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
 	</div>
-</div>
 <!-- end #footer -->
+</div>
 </body>
 </html>

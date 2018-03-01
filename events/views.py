@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from .forms import UserForm, bandForm, DocumentForm, UserCreationForm
-from .models import Event, ContestCalendar, searchBandSugg
+from .models import Event, ContestCalendar, searchBandSugg, Document
 from calendar import monthrange
 from operator import and_
 from django.db.models import Q
@@ -27,6 +27,7 @@ def community(request):
     return render(request, 'front/community.html')
 
 def livepics(request):
+    doc = Document.objects.all()
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -35,7 +36,8 @@ def livepics(request):
     else:
         form = DocumentForm()
     return render(request, 'front/livepics.html', {
-        'form': form
+        'form': form,
+        'doc': doc
     })
 
 def venues(request):

@@ -9,7 +9,7 @@ from calendar import HTMLCalendar
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from events.models import Event, searchBandSugg
+from events.models import Event, searchBandSugg, Document
 from events.utils import EventCalendar
 
 
@@ -57,3 +57,4 @@ admin.site.register(venue)
 admin.site.register(venueLocation)
 admin.site.register(searchBandSugg)
 admin.site.register(Event, EventAdmin)
+admin.site.register(Document)

@@ -130,7 +130,7 @@ class searchBandSugg(models.Model):
 
 class Document(models.Model):
     # date = forms.DateField(required=False)
-    document = models.FileField(upload_to='documents/')
+    document = models.ImageField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     # band = models.CharField(max_length=255, blank=True)
     # venue = models.CharField(max_length=255, blank=True)
