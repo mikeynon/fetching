@@ -5,6 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
+        {% load static %}
+        {% load band_tags %}
         <title>Power - Bootstrap HTML5 Template</title>
     	<meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -382,8 +384,7 @@ http://www.templatemo.com/tm-508-power
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <h4>Our Blog Entries</h4>
-                            <p>Aliquam neque neque, commodo in euismod id, lobortis in lacus. Duis interdum sagittis velit, fermentum tincidunt lectus. Nam ornare turpis.</p>
+                            <h4>Upcoming Shows</h4>
                         </div>
                     </div>
                 </div>
@@ -391,14 +392,19 @@ http://www.templatemo.com/tm-508-power
                     <div class="wrapper">
                         <div class="col-md-6">
                             <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+                                {% for x in Events %}
+                                    {% is_in_note x as x_bool %}
+                                    {% if x_bool %}
                                 <li><a href="#tab1" class="active">
-                                    shoreditch wolf ethical hashtag
+                                    {{ x.notes }}
                                     <ul class="info-post">
-                                        <li><i class="fa fa-user"></i>Admin</li>
-                                        <li><i class="fa fa-calendar"></i>14 November 2017</li>
-                                        <li><i class="fa fa-wechat"></i>12 Comments</li>
+                                        <li><i class="fa fa-user"></i>{{ user.username }}</li>
+                                        <li><i class="fa fa-calendar"></i>{{ x.day }}</li>
+                                        <li><i class="fa fa-wechat"></i>{{ x.likes }}</li>
                                     </ul>
                                 </a></li>
+                                    {% endif %}
+                                {% endfor %}
                                 <li><a href="#tab2">
                                     kickstarter master cleanse scenester
                                     <ul class="info-post">
