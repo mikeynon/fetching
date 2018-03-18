@@ -14,7 +14,7 @@ from events.models import Event, searchBandSugg, User, band
 
 now = time.gmtime(time.time())
 
-##########EVENTS SCRAPERS##########
+#########EVENTS SCRAPERS##########
 ##THE KNOW WORKS
 class Command(BaseCommand):
     help = 'Scrapes the for Events at The Know'
@@ -319,147 +319,145 @@ class Command(BaseCommand):
             else:
                 print(event, "Exists already")
 
-##LOVECRAFT BAR UNTESTED
-class Command(BaseCommand):
-    help = "Scrapes the for Events at LoveCraft Bar"
+# ##LOVECRAFT BAR BROKEN TUMBLR FORMAT SITE
+# class Command(BaseCommand):
+#     help = "Scrapes the for Events at LoveCraft Bar"
+#
+#     class EventsConfigHT(AppConfig):
+#         name = 'events'
+#         url= 'https://thelovecraftbar.com/specialevents'
+#         data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+#         sauce = data.text
+#         soup = bs.BeautifulSoup(sauce, "html.parser")
+#         for i in soup.find_all("section", {"class":"post"}):
+#             start_time = "7:00 PM PDT"
+#             end_time = "11:00 PM PDT"
+#             name = i.find("header", {"class": "post-header"})
+#             theo = name.text
+#             notes= theo + " at LoveCraft Bar"
+#             month = i.find("a", {"class": "meta-item post-date"})
+#             if month == None:
+#                 continue
+#             else:
+#                 date1 = month.text
+#             try:
+#                 day = datetime.datetime.strptime(date1, '%B %d, %Y').replace(2018)
+#             except ValueError:
+#                 continue
+#             if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+#                 day = day.replace(2018)
+#             else:
+#                 day = day.replace(2019)
+#             event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+#             if created:
+#                 print(event, 'Created')
+#             else:
+#                 print(event, "Exists already")
 
-    def handle(self, *args, **options):
-        self.stdout.write('\nScraping started at %s\n' % str(datetime.datetime.now()))
-
-    class EventsConfigHT(AppConfig):
-        name = 'events'
-        url= 'https://thelovecraftbar.com/'
-        data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-        sauce = data.text
-        soup = bs.BeautifulSoup(sauce, "html.parser")
-        for i in soup.find_all("section", {"class":"post"}):
-            start_time = "7:00 PM PDT"
-            end_time = "11:00 PM PDT"
-            name = i.find("header", {"class": "post-header"})
-            theo = name.text
-            notes= theo + " at LoveCraft Bar"
-            month = i.find("a", {"class": "meta-item post-date"})
-            if month == None:
-                continue
-            else:
-                date1 = month.text
-            try:
-                day = datetime.datetime.strptime(date1, '%B %d, %Y').replace(2018)
-            except ValueError:
-                continue
-            if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
-                day = day.replace(2018)
-            else:
-                day = day.replace(2019)
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
-            if created:
-                print(event, 'Created')
-            else:
-                print(event, "Exists already")
-
-##BLACKWATER BAR UNTESTED
-class Command(BaseCommand):
-    help = "Scrapes the for Events at BlackWater Bar"
-
-    class EventsConfigRB(AppConfig):
-        name = 'events'
-        data = requests.get('http://pc-pdx.com/venues/blackwater', headers={'User-Agent': 'Mozilla/5.0'})
-        sauce = data.text
-        soup = bs.BeautifulSoup(sauce, "html.parser")
-        for i in soup.find_all("div", {"class":"show-listing show-listing-item crowdAllAges"}):
-            e = i.find_all("a", {"class":"bands slider-spot "})
-            f = list(map(str.strip, e))
-            print(f)
+# ##BLACKWATER BAR BROKEN
+# class Command(BaseCommand):
+#     help = "Scrapes the for Events at BlackWater Bar"
+#
+#     class EventsConfigRB(AppConfig):
+#         name = 'events'
+#         data = requests.get('http://pc-pdx.com/venues/blackwater', headers={'User-Agent': 'Mozilla/5.0'})
+#         sauce = data.text
+#         soup = bs.BeautifulSoup(sauce, "html.parser")
+#         for i in soup.find_all("div", {"class":"show-listing show-listing-item crowdAllAges"}):
+#             print(i)
+            # e = i.find_all("a", {"class":"bands slider-spot "})
+            # f = list(map(e.strip))
+            # print(f)
             # names = " ".join(r.split())
             # print(names)
-            print(" ")
-        for i in bands:
-            band = i.find_all("a", {"class":"bands slider-spot "})
-            notes = band.text
-            print(notes)
-            name2 = name.find_all("a")
-            notes = name2.text
-            print(notes)
-            date1 = i.find("ul", {"class":"list-column third-column"})
-            date2 = date1.find("li")[1]
-            date3 = date2.tex
-            try:
-                day = datetime.datetime.strptime(date3, '%A %d/%m/%Y').replace(2018)
-            except TypeError:
-                continue
-            if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
-                day = day.replace(2018)
-            else:
-                day = day.replace(2019)
-            start_time = "7:00 PM PDT"
-            end_time = "11:00 PM PDT"
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
-            if created:
-                print(event, 'Created')
-            else:
-                print(event, "Exists already")
-
-## ROSELAND THEATER UNTESTED
-class Command(BaseCommand):
-    help = "Scrapes the for Events at Roseland Theater"
-
-    def handle(self, *args, **options):
-        self.stdout.write('\nScraping started at %s\n' % str(datetime.datetime.now()))
-
-    class EventsConfigHT(AppConfig):
-        cafile = 'wpengine.com'
-        name = 'events'
-        url= 'https://www.songkick.com/venues/32177-roseland-theater/calendar'
-        data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-        sauce = data.text
-        soup = bs.BeautifulSoup(sauce, "html.parser")
-        for i in soup.find_all("li"):
-            start_time = "7:00 PM PDT"
-            end_time = "11:00 PM PDT"
-            name = i.find("p", {"class": "artists summary"})
-            if name == None:
-                continue
-            else:
-                theo = name.text
-            notes = " ".join(theo.split())
-            month = i.time
-            if month == None:
-                continue
-            else:
-                date1 = month.text
-            if len(date1) < 38:
-                try:
-                    day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%d"></time>').replace(2018)
-                    print(day)
-                except ValueError:
-                    continue
-                if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
-                    day = day.replace(2018)
-                else:
-                    day = day.replace(2019)
-
-                    event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes,
-                                                                 day=day)
-                    if created:
-                        print(event, 'Created')
-                    else:
-                        print(event, "Exists already")
-            else:
-                try:
-                    day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%dT%H:%M:%S-%z"></time>').replace(2018)
-                except ValueError:
-                    continue
-                if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
-                    day = day.replace(2018)
-                else:
-                    day = day.replace(2019)
-
-                    event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
-                    if created:
-                        print(event, 'Created')
-                    else:
-                        print(event, "Exists already")
-
+            # print(" ")
+        # for i in soup:
+        #     band = i.find_all("a", {"class":"bands slider-spot "})
+        #     notes = band.text
+        #     print(notes)
+        #     name2 = name.find_all("a")
+        #     notes = name2.text
+        #     print(notes)
+        #     date1 = i.find("ul", {"class":"list-column third-column"})
+        #     date2 = date1.find("li")[1]
+        #     date3 = date2.tex
+        #     try:
+        #         day = datetime.datetime.strptime(date3, '%A %d/%m/%Y').replace(2018)
+        #     except TypeError:
+        #         continue
+        #     if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+        #         day = day.replace(2018)
+        #     else:
+        #         day = day.replace(2019)
+        #     start_time = "7:00 PM PDT"
+        #     end_time = "11:00 PM PDT"
+        #     event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+        #     if created:
+        #         print(event, 'Created')
+        #     else:
+        #         print(event, "Exists already")
+#
+# ## ROSELAND THEATER BROKEN
+# class Command(BaseCommand):
+#     help = "Scrapes the for Events at Roseland Theater"
+#
+#     def handle(self, *args, **options):
+#         self.stdout.write('\nScraping started at %s\n' % str(datetime.datetime.now()))
+#
+#     class EventsConfigHT(AppConfig):
+#         cafile = 'wpengine.com'
+#         name = 'events'
+#         url= 'https://www.songkick.com/venues/32177-roseland-theater/calendar'
+#         data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+#         sauce = data.text
+#         soup = bs.BeautifulSoup(sauce, "html.parser")
+#         for i in soup.find_all("li"):
+#             start_time = "7:00 PM PDT"
+#             end_time = "11:00 PM PDT"
+#             name = i.find("p", {"class": "artists summary"})
+#             if name == None:
+#                 continue
+#             else:
+#                 theo = name.text
+#             notes = " ".join(theo.split())
+#             month = i.time
+#             if month == None:
+#                 continue
+#             else:
+#                 date1 = month.text
+#             if len(date1) < 38:
+#                 try:
+#                     day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%d"></time>').replace(2018)
+#                     print(day)
+#                 except ValueError:
+#                     continue
+#                 if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+#                     day = day.replace(2018)
+#                 else:
+#                     day = day.replace(2019)
+#
+#                     event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes,
+#                                                                  day=day)
+#                     if created:
+#                         print(event, 'Created')
+#                     else:
+#                         print(event, "Exists already")
+#             else:
+#                 try:
+#                     day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%dT%H:%M:%S-%z"></time>').replace(2018)
+#                 except ValueError:
+#                     continue
+#                 if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+#                     day = day.replace(2018)
+#                 else:
+#                     day = day.replace(2019)
+#
+#                     event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+#                     if created:
+#                         print(event, 'Created')
+#                     else:
+#                         print(event, "Exists already")
+#
 
 # # ## Populate Background for each div in Bands Page ##
 # # class BandPic(AppConfig):
@@ -504,95 +502,95 @@ for i in eventslist:
         pass
 #
 # ####Band Name Database Scrapers
-
-class BandConfigRe(AppConfig):
-    name = 'bands'
-    data = requests.get('https://store.relapse.com/bands', headers={'User-Agent': 'Mozilla/5.0'})
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("ul", {"class":"mp-productfilter-list"}):
-        for j in i.find_all("a"):
-            yhyh = j.text
-            name = " ".join(yhyh.split())
-            username = None
-            band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-            if created:
-                print(band, 'Created')
-            else:
-                print(band, "Exists already")
-
-class BandConfigBBB(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.triple-brecords.com/index/')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("h2", {"class": "project-title"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name,username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-class BandConfigDW(AppConfig):
-    name = 'bands'
-    data = requests.get('https://deathwishinc.bandcamp.com/artists')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("div", {"class":"artists-grid-name"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-
-class BandConfigRR(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.roadrunnerrecords.com/artists')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("a", {"class": "artistname"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-
-
-class BandConfigEV(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.equalvision.com/artists/')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("h3"):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-class BandConfigEV2(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.equalvision.com/artists/')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for r in soup.find_all("ul", {"class": "plain"}):
-        i = soup.find_all("li", {"class":"quarter"})
-        e = soup.find_all("a")
-        yhyh = e.text
-        name= " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
+#
+# class BandConfigRe(AppConfig):
+#     name = 'bands'
+#     data = requests.get('https://store.relapse.com/bands', headers={'User-Agent': 'Mozilla/5.0'})
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("ul", {"class":"mp-productfilter-list"}):
+#         for j in i.find_all("a"):
+#             yhyh = j.text
+#             name = " ".join(yhyh.split())
+#             username = None
+#             band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#             if created:
+#                 print(band, 'Created')
+#             else:
+#                 print(band, "Exists already")
+#
+# class BandConfigBBB(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.triple-brecords.com/index/')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("h2", {"class": "project-title"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name,username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+# class BandConfigDW(AppConfig):
+#     name = 'bands'
+#     data = requests.get('https://deathwishinc.bandcamp.com/artists')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("div", {"class":"artists-grid-name"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+#
+# class BandConfigRR(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.roadrunnerrecords.com/artists')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("a", {"class": "artistname"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+#
+#
+# class BandConfigEV(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.equalvision.com/artists/')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("h3"):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+# class BandConfigEV2(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.equalvision.com/artists/')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for r in soup.find_all("ul", {"class": "plain"}):
+#         i = soup.find_all("li", {"class":"quarter"})
+#         e = soup.find_all("a")
+#         yhyh = e.text
+#         name= " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
