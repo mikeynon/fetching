@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'events.apps.EventConfig',
-    'djangobower',
-    'bootstrap3_datetime',
     # 'webpack_loader',
 
 ]
