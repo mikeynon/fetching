@@ -42,7 +42,7 @@ class Command(BaseCommand):
             else:
                 day = day.replace(2019)
             band = i.find("div",{"class":"list-card__title"})
-            act = band.text
+            act = band.text.upper()
             notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
@@ -79,7 +79,7 @@ class Command(BaseCommand):
             else:
                 day = day.replace(2019)
             band = i.find("div", {"class": "list-card__title"})
-            act = band.text
+            act = band.text.upper()
             note = " ".join(act.split())
             notes = note + " at Bossanova Ballroom"
             start_time = "7:00 PM PDT"
@@ -101,7 +101,7 @@ class EventsConfigDF(AppConfig):
     for i in soup.find_all("td", {"class": "has-event"}):
         start_time = "8:00 PM PDT"
         end_time = "11:00 PM PDT"
-        string = i.text
+        string = i.text.upper()
         if len(string) > 10:
             name = i.find("a", {"class": "url"})
             notes = name.text + " at Doug Fir Lounge"
@@ -156,7 +156,7 @@ class Command(BaseCommand):
                 start_time = "7:00 PM PDT"
                 end_time = "11:00 PM PDT"
                 name = i.find("div", {"class": "tw-name"})
-                headliner = name.text
+                headliner = name.text.upper()
                 notes= " ".join(headliner.split()) + " at Dante's"
                 twdate = i.find("span", {"class":"tw-event-date"})
                 date= twdate.text
@@ -191,7 +191,7 @@ class Command(BaseCommand):
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
             name = i.find("h2", {"class": "rhino-event-header"})
-            theo = name.text
+            theo = name.text.upper()
             headliner = " ".join(theo.split())
             subline = i.find("h3", {"class": "rhino-event-subheader"})
             if subline == None:
@@ -245,7 +245,7 @@ class Command(BaseCommand):
             else:
                 day = day.replace(2019)
             band = i.find("div",{"class":"list-card__title"})
-            act = band.text
+            act = band.text.upper()
             notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
@@ -299,7 +299,7 @@ class Command(BaseCommand):
         sauce = data.text
         soup = bs.BeautifulSoup(sauce, "html.parser")
         for i in soup.find_all("title"):
-            band_name = i.text
+            band_name = i.text.upper()
             notes = (re.sub(r'(\ at W).*$', "", band_name) + " at Wonder Ballroom")
             show_date = re.sub(r'(.*(\ on ))', "", band_name)
             start_time = re.sub(r'(.*(\w018 ))', "", band_name)
