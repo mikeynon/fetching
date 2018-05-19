@@ -503,91 +503,89 @@ for i in eventslist:
 #
 # ####Band Name Database Scrapers
 #
-class BandConfigRe(AppConfig):
-    name = 'bands'
-    data = requests.get('https://store.relapse.com/bands', headers={'User-Agent': 'Mozilla/5.0'})
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("ul", {"class":"mp-productfilter-list"}):
-        for j in i.find_all("a"):
-            yhyh = j.text
-            name = " ".join(yhyh.split())
-            username = None
-            band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-            if created:
-                print(band, 'Created')
-            else:
-                print(band, "Exists already")
-
-class BandConfigBBB(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.triple-brecords.com/index/')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("h2", {"class": "project-title"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name,username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-class BandConfigDW(AppConfig):
-    name = 'bands'
-    data = requests.get('https://deathwishinc.bandcamp.com/artists')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("div", {"class":"artists-grid-name"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-
-class BandConfigRR(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.roadrunnerrecords.com/artists')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("a", {"class": "artistname"}):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-
-
-class BandConfigEV(AppConfig):
-    name = 'bands'
-    data = requests.get('http://www.equalvision.com/artists/')
-    sauce = data.text
-    soup = bs.BeautifulSoup(sauce, "html.parser")
-    for i in soup.find_all("h3"):
-        yhyh = i.text
-        name = " ".join(yhyh.split())
-        username = None
-        band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-        if created:
-            print(band, 'Created')
-        else:
-            print(band, "Exists already")
-## NOT WORKING ##
-# class BandConfigEV2(AppConfig):
+# class BandConfigRe(AppConfig):
+#     name = 'bands'
+#     data = requests.get('https://store.relapse.com/bands', headers={'User-Agent': 'Mozilla/5.0'})
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("ul", {"class":"mp-productfilter-list"}):
+#         for j in i.find_all("a"):
+#             yhyh = j.text
+#             name = " ".join(yhyh.split())
+#             username = None
+#             band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#             if created:
+#                 print(band, 'Created')
+#             else:
+#                 print(band, "Exists already")
+#
+# class BandConfigBBB(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.triple-brecords.com/index/')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("h2", {"class": "project-title"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name,username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+# class BandConfigDW(AppConfig):
+#     name = 'bands'
+#     data = requests.get('https://deathwishinc.bandcamp.com/artists')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("div", {"class":"artists-grid-name"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+#
+# class BandConfigRR(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.roadrunnerrecords.com/artists')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("a", {"class": "artistname"}):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+#
+#
+# class BandConfigEV(AppConfig):
 #     name = 'bands'
 #     data = requests.get('http://www.equalvision.com/artists/')
 #     sauce = data.text
 #     soup = bs.BeautifulSoup(sauce, "html.parser")
-#     for r in soup.find_all("ul", {"class": "plain"}):
-#         i = soup.find_all("li", {"class":"quarter"})
-#         e = soup.find_all("a")
-#         yhyh = e.text
+#     for i in soup.find_all("h3"):
+#         yhyh = i.text
+#         name = " ".join(yhyh.split())
+#         username = None
+#         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#         if created:
+#             print(band, 'Created')
+#         else:
+#             print(band, "Exists already")
+#
+# class BandConfigRise(AppConfig):
+#     name = 'bands'
+#     data = requests.get('http://www.riserecords.com/artists.php')
+#     sauce = data.text
+#     soup = bs.BeautifulSoup(sauce, "html.parser")
+#     for i in soup.find_all("p"):
+#         yhyh = i.text
 #         name= " ".join(yhyh.split())
 #         username = None
 #         band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
@@ -595,3 +593,21 @@ class BandConfigEV(AppConfig):
 #             print(band, 'Created')
 #         else:
 #             print(band, "Exists already")
+
+class BandConfigRR(AppConfig):
+    name = 'bands'
+    for i in range(201):  # Number of pages plus one
+        url = "https://bandcamp.com/?g=metal&s=top&p={}&gn=0&f=all&t=hardcore#discover".format(i)
+        r = requests.get(url)
+        sauce = r.text
+        soup = bs.BeautifulSoup(sauce, "html.parser")
+        for i in soup.find_all("div", {"class": "col col-3-12 discover-item"}):
+            for j in i.find("a", {"class": "item-artist"}):
+                yhyh = j.text
+                name = " ".join(yhyh.split())
+                username = None
+                band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+                if created:
+                    print(band, 'Created')
+                else:
+                    print(band, "Exists already")
