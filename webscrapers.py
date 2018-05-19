@@ -593,21 +593,20 @@ for i in eventslist:
 #             print(band, 'Created')
 #         else:
 #             print(band, "Exists already")
-
-class BandConfigRR(AppConfig):
-    name = 'bands'
-    for i in range(201):  # Number of pages plus one
-        url = "https://bandcamp.com/?g=metal&s=top&p={}&gn=0&f=all&t=hardcore#discover".format(i)
-        r = requests.get(url)
-        sauce = r.text
-        soup = bs.BeautifulSoup(sauce, "html.parser")
-        for i in soup.find_all("div", {"class": "col col-3-12 discover-item"}):
-            for j in i.find("a", {"class": "item-artist"}):
-                yhyh = j.text
-                name = " ".join(yhyh.split())
-                username = None
-                band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
-                if created:
-                    print(band, 'Created')
-                else:
-                    print(band, "Exists already")
+## NOT WORKING BANDCAMP PARSER ##
+# class BandConfigRR(AppConfig):
+#     name = 'bands'
+#     for i in range(201):  # Number of pages plus one
+#         url = "https://bandcamp.com/?g=metal&s=top&p={}&gn=0&f=all&t=hardcore#discover".format(i)
+#         r = requests.get(url)
+#         sauce = r.text
+#         soup = bs.BeautifulSoup(sauce, "html.parser")
+#         for j in soup.find_all("a", {"class": "item-artist"}):
+#             yhyh = j.text
+#             name = " ".join(yhyh.split())
+#             username = None
+#             band, created = searchBandSugg.objects.get_or_create(name=name, username=username)
+#             if created:
+#                 print(band, 'Created')
+#             else:
+#                 print(band, "Exists already")
