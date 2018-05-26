@@ -491,15 +491,15 @@ class Command(BaseCommand):
 
 
 
-eventslist = Event.objects.all()
-bandslist = searchBandSugg.objects.all()
-for i in eventslist:
-    if i.day < datetime.date.today():
-        i.delete()
-    # elif i.notes not in bandslist:
-    #     i.delete()
-    else:
-        pass
+# eventslist = Event.objects.all()
+# bandslist = searchBandSugg.objects.all()
+# for i in eventslist:
+#     if i.day < datetime.date.today():
+#         i.delete()
+#     # elif i.notes not in bandslist:
+#     #     i.delete()
+#     else:
+#         pass
 #
 # ####Band Name Database Scrapers
 #
