@@ -1,0 +1,116 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Red &amp; Black     
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120513
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>
+	HxC PDX
+</title>
+<link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
+	{% load static %}
+	<link href="{% static 'events/style.css' %}" rel="stylesheet" type="text/css" media="screen">
+{#	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{% block css %}{% endblock %}
+</head>
+
+
+
+<body>
+	<div id="header-wrapper">
+		<div id="header">
+			<div id="logo">
+				<h1><a href="{% url 'home' %}" class="logo">HxC<br>PDX </a></h1>
+				<!--<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>-->
+			</div>
+            <div id="menu">
+				<ul>
+                    <li><a href="{% url 'shows' %}">Shows</a></li>
+                    <li><a href="{% url 'livepics' %}">Live Pics and Flyers</a></li>
+					<li><a href="{% url 'bands' %}">Locals</a></li>
+					<li><a href="{% url 'venues' %}">Venues</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- end #header -->
+
+	<div id="page">
+		<div id="page-bgtop">
+			<div id="page-bgbtm">
+				<div id="content">
+{#                    <div style="clear: both;">&nbsp;</div>#}
+					<!-- POST div to inject body posts (instagram, user input, big calendar, local bands, live pics, venues -->
+{% block content %}
+{% endblock %}
+					<!-- end POST div to inject-->
+
+                {% if user.is_authenticated %}<a href="{% url 'logout' %}">[logout]</a>{% endif %}
+				</div>
+				<!-- end #content -->
+<div id="sidebar" style="float:left;">
+    <br><br>
+        {% if user.is_authenticated %}
+            <h2>Welcome, {{ user.username }}</h2>
+{% else %}
+            {% block login %}
+            <h2>
+                <a href='{% url 'login' %}' onclick="$(this).closest('login').submit()">
+                    Login
+                </a>
+            </h2>
+            {% endblock %}
+{% endif %}
+</div>
+		</div>
+	</div>
+				<!-- end #sidebar -->
+				<div style="clear: both;">&nbsp;</div>
+
+	<!-- end #page -->
+	<div id="footer">
+		<a href="https://www.instagram.com/hxcpdx/" id="insta">
+            Insta
+        </a>,
+        <a href="http://www.brooklynvegan.com" id="bkvegan">
+            BK
+        </a>,
+        <a href="http://www.lambgoat.com" id="lambgoat">
+        LG
+        </a>,
+        <a href="https://www.hate5six.com/videos" id="hate5">
+            H5S
+        </a>,
+        <a href="http://www.shrunkenheadpdx.com" id="shrunken">
+        SH
+        </a>,
+        <a href="http://www.calspharmacy.com" id="cals">
+        CP
+        </a>,
+        <a href="http://www.compoundgallery.com" id="compound">
+        C
+        </a>,
+        <a href="http://www.heirportland.com" id="heir">
+        H
+        </a>
+		<p>&copy; HXCPDX. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+	</div>
+<!-- end #footer -->
+</div>
+</body>
+</html>

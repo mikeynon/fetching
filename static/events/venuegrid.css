@@ -1,0 +1,14 @@
+.subgrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-family: 'futura', bold;
+    grid-gaps: 5px;
+}
+.subgrid div {
+    width: 100%;
+    border: 1px solid black;
+    background: white;
+}
+
+

@@ -1,0 +1,30 @@
+.subgrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    font-family: 'futura', bold, serif;
+    grid-gap: 5px;
+}
+.subgrid div {
+    width: 180px;
+    height: 200px;
+    border: 1px solid black;
+}
+.subgrid div:hover{
+    background-color:#000;
+    opacity:0.5;
+}
+
+.subgrid a {
+    font-size: 3.4em;
+    color: transparent;
+    text-align: center;
+}
+
+.subgrid a:hover {
+    color: #A32833;
+    text-shadow: #2B2522;
+    text-decoration: none;
+}
+
+

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/bandgrid.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="subgrid" id="body">
+    <div id="one">
+        <a href="https://ruinedit.bandcamp.com/"><img src ="{% static "images/ruineditpic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="two">
+        <a href="https://trustissuespdx.bandcamp.com/releases"><img src ="{% static "images/trustissuespic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="three">
+        <a href="https://deadcountrypdx.bandcamp.com/releases"><img src ="{% static "images/deadcountrypic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="four">
+        <a href="https://braveinthegrave.bandcamp.com/"><img src ="{% static "images/RIPpic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="five">
+        <a href="https://iced-hc.bandcamp.com/releases"><img src ="{% static "images/icedpic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="six">
+        <a href="https://deadwitch.bandcamp.com/"><img src ="{% static "images/deadwitchpic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="seven">
+        <a href="https://worws.bandcamp.com/"><img src ="{% static "images/worwspic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="eight">
+         <a href="https://cuttingthrough.bandcamp.com/"><img src ="{% static "images/cuttingpic.jpg" %}" style="height:100%;width:100%;background-size:cover;">
+        </a></div>
+    <div id="nine">
+        <a href="https://machoboys.bandcamp.com/"><img src ="{% static "images/machopic.jpg" %}" style="height:100%;width:100%;background-size:cover;" href="https://machoboys.bandcamp.com/">
+        </a></div>
+</div>
+{% endblock %}

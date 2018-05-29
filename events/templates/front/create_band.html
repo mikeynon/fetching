@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="body">
+<div id="Band Add">
+        <form method="POST"> {% csrf_token %}
+        <label for="searchBand">Add Band to the Search or Record Label: </label>{{ form.as_p }}
+        <input id="searchBand" type="text" name="searchBand" placeholder="one at a time">
+        <input type="submit" value="Add">
+        </form>
+        </div>
+</div>
+{% endblock %}
