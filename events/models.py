@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 from itertools import groupby
 from calendar import HTMLCalendar, monthrange
 from django.contrib.admin import widgets
+import datetime
 
 class ContestCalendar(HTMLCalendar):
 
@@ -59,6 +60,7 @@ class Event(models.Model):
     notes = models.TextField(blank=True, null=True)
     # private = models.BooleanField(initial=False)
     likes = models.IntegerField(default=0)
+    space = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Scheduling'

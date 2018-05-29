@@ -46,6 +46,7 @@ class Command(BaseCommand):
             notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
+            space = "The Know"
             event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
             if created:
                 print(event, 'Created')
@@ -59,7 +60,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write('\nScraping started at %s\n' % str(datetime.datetime.now()))
 
-    class EventsConfigKn(AppConfig):
+    class EventsConfigBBB(AppConfig):
         name = 'events'
         data = requests.get('https://www.eventbrite.com/o/bossanova-presents-14578044956')
         sauce = data.text
@@ -80,10 +81,10 @@ class Command(BaseCommand):
                 day = day.replace(2019)
             band = i.find("div", {"class": "list-card__title"})
             act = band.text.upper()
-            note = " ".join(act.split())
-            notes = note + " at Bossanova Ballroom"
+            notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
+            space = "Bossanova Ballroom"
             event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
             if created:
                 print(event, 'Created')
@@ -104,9 +105,10 @@ class EventsConfigDF(AppConfig):
         string = i.text.upper()
         if len(string) > 10:
             name = i.find("a", {"class": "url"})
-            notes = name.text + " at Doug Fir Lounge"
+            notes = name.text
             stringlist = string.split()
             date = stringlist[1]
+            space = "Doug Fir Lounge"
             if re.search('[a-zA-Z]', date) == True:
                 pass
             else:
@@ -157,9 +159,10 @@ class Command(BaseCommand):
                 end_time = "11:00 PM PDT"
                 name = i.find("div", {"class": "tw-name"})
                 headliner = name.text.upper()
-                notes= " ".join(headliner.split()) + " at Dante's"
+                notes= " ".join(headliner.split())
                 twdate = i.find("span", {"class":"tw-event-date"})
                 date= twdate.text
+                space = "Dante's"
                 try:
                     day = datetime.datetime.strptime(date, '%B %d, %Y').replace(2018)
                 except ValueError:
@@ -198,8 +201,9 @@ class Command(BaseCommand):
                 continue
             else:
                 sub = subline.text
-            notes= headliner +" "+ sub +" at Hawthorne Theatre"
+            notes= headliner +" "+ sub
             month = i.find("p", {"class":"rhino-event-date"})
+            space = "Hawthorne Theatre"
             if month == None:
                 continue
             else:
@@ -249,6 +253,7 @@ class Command(BaseCommand):
             notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
+            space = "Analog Theather"
             event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
             if created:
                 print(event, 'Created')
@@ -272,9 +277,10 @@ class Command(BaseCommand):
             start_time = "07:00 PM PDT"
             end_time = "10:00 PM PDT"
             titles = link.contents[3].text.split()
-            notes = (" ".join(titles) + " at Crystal Ballroom")
+            notes = (" ".join(titles))
             show_date = link.contents[5].text
             day = datetime.datetime.strptime(show_date, '%A, %B %d').replace(2018)
+            space = "Crystal Ballroom"
             if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
                 day = day.replace(2018)
             else:
@@ -300,11 +306,12 @@ class Command(BaseCommand):
         soup = bs.BeautifulSoup(sauce, "html.parser")
         for i in soup.find_all("title"):
             band_name = i.text.upper()
-            notes = (re.sub(r'(\ at W).*$', "", band_name) + " at Wonder Ballroom")
+            notes = (re.sub(r'(\ at W).*$', "", band_name))
             show_date = re.sub(r'(.*(\ on ))', "", band_name)
             start_time = re.sub(r'(.*(\w018 ))', "", band_name)
             end_time = "11:00 PM PDT"
             date = re.sub(r'(\ 0).*$', "", show_date)
+            space = "Wonder Ballroom"
             try:
                 day = datetime.datetime.strptime(date, '%d/%m/%Y').replace(2018)
             except ValueError:
@@ -491,15 +498,15 @@ class Command(BaseCommand):
 
 
 
-# eventslist = Event.objects.all()
-# bandslist = searchBandSugg.objects.all()
-# for i in eventslist:
-#     if i.day < datetime.date.today():
-#         i.delete()
-#     # elif i.notes not in bandslist:
-#     #     i.delete()
-#     else:
-#         pass
+eventslist = Event.objects.all()
+bandslist = searchBandSugg.objects.all()
+for i in eventslist:
+    if i.day < datetime.date.today():
+        i.delete()
+    # elif i.notes not in bandslist:
+    #     i.delete()
+    else:
+        pass
 #
 # ####Band Name Database Scrapers
 #
