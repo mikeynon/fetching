@@ -91,6 +91,26 @@ def shows(request):
             band.save()
     return render(request, 'front/community.html', context)
 
+def genpop(request):
+    # bandSug = []
+
+    x = Event.objects.order_by('day')
+    notes = ' // '.join(list(Event.objects.values_list('notes', flat=True))).split(' // ')
+
+    # bandSug = searchBandSugg.objects.filter(reduce(and_, [Q(name__in=c) for c in notes]))
+    #
+    #
+    # print(bandSug)
+    form = bandForm(request.POST or None)
+    context = {'Event': x, 'form': form,
+               # 'Bands': bandSug
+               }
+    if request.POST:
+        if form.is_valid():
+            band = form.save(commit=False)
+            band.username = request.user
+            band.save()
+    return render(request, 'front/gencommun.html', context)
 
 def signup_view(request):
     if request.method == 'POST':

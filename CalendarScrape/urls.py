@@ -36,7 +36,7 @@ urlpatterns = [
                   url(r'^livepics/$', views.livepics, name='livepics'),
                   url(r'^bands/$', views.bands, name='bands'),
                   url(r'^venues/$', views.venues, name='venues'),
-                # url(r'^addband/$', views.createBand, name='addBand'),
+                url(r'^genpop/$', views.genpop, name='genpop'),
                   url(r'^promoter/$', views.calendar, name='promoter'),
                   url(r'^add_attending/$', views.addLike, name="add_attending")
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
