@@ -404,6 +404,67 @@ class Command(BaseCommand):
         #     else:
         #         print(event, "Exists already")
 #
+# ## TONIC LOUNGE BROKEN
+# class Command(BaseCommand):
+#     help = "Scrapes the for Events at Tonic Lounge"
+#
+#     def handle(self, *args, **options):
+#         self.stdout.write('\nScraping started at %s\n' % str(datetime.datetime.now()))
+#
+#     class EventsConfigHT(AppConfig):
+#         cafile = 'wpengine.com'
+#         name = 'events'
+#         url= 'https://tickets.holdmyticket.com/location/tonic-lounge-portland'
+#         data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+#         sauce = data.text
+#         soup = bs.BeautifulSoup(sauce, "html.parser")
+#         for i in soup.find_all("div", {"class":"list-event-details"}):
+#             start_time = "8:00 PM PDT"
+#             end_time = "11:00 PM PDT"
+#             name = i.find("hmt-raw")
+#             if name == None:
+#                 continue
+#             else:
+#                 theo = name.text
+#             notes = " ".join(theo.split())
+#             space = "Tonic Lounge"
+#             date1 = i.find("list-event-date")
+#             if date1 == None:
+#                 continue
+#             else:
+#                 date1 = date1.text
+#             if len(date1) < 38:
+#                 try:
+#                     day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%d"></time>').replace(2018)
+#                     print(day)
+#                 except ValueError:
+#                     continue
+#                 if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+#                     day = day.replace(2018)
+#                 else:
+#                     day = day.replace(2019)
+#
+#                     event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes,
+#                                                                  day=day)
+#                     if created:
+#                         print(event, 'Created')
+#                     else:
+#                         print(event, "Exists already")
+#             else:
+#                 try:
+#                     day = datetime.datetime.strptime(date1, '<time datetime="%Y-%m-%dT%H:%M:%S-%z"></time>').replace(2018)
+#                 except ValueError:
+#                     continue
+#                 if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+#                     day = day.replace(2018)
+#                 else:
+#                     day = day.replace(2019)
+#
+#                     event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+#                     if created:
+#                         print(event, 'Created')
+#                     else:
+#                         print(event, "Exists already")
 # ## ROSELAND THEATER BROKEN
 # class Command(BaseCommand):
 #     help = "Scrapes the for Events at Roseland Theater"
