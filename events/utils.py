@@ -15,7 +15,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ngettext, override as translation_override
 from calendar import HTMLCalendar
 from datetime import datetime as dtime, date, time
-# from events.models import Event
+from events.models import Event
 
 
 class EventCalendar(HTMLCalendar):

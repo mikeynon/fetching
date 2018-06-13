@@ -6,7 +6,7 @@ from django.utils.text import capfirst
 
 # from Bootstrap import DatetimePicker
 from .models import searchBandSugg, Document, band
-# from .models import Event
+from .models import Event
 
 
 class bandForm(forms.ModelForm):

@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .models import band, venue, venueLocation
+from events.models import Event
+from events.models import searchBandSugg, Document
 import calendar
 import datetime
 from calendar import HTMLCalendar
@@ -9,8 +11,7 @@ from calendar import HTMLCalendar
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-# from events.models import Event
-from events.models import searchBandSugg, Document
+
 from events.utils import EventCalendar
 
 
@@ -57,5 +58,5 @@ admin.site.register(band)
 admin.site.register(venue)
 admin.site.register(venueLocation)
 admin.site.register(searchBandSugg)
-# admin.site.register(Event, EventAdmin)
+admin.site.register(Event, EventAdmin)
 admin.site.register(Document)

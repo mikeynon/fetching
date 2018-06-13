@@ -10,7 +10,7 @@ from django.views.generic import TemplateView
 
 from .forms import UserForm, bandForm, DocumentForm, UserCreationForm
 from .models import ContestCalendar, searchBandSugg, Document
-# from .models import Event
+from .models import Event
 from calendar import monthrange
 from operator import and_
 from django.db.models import Q
@@ -24,7 +24,6 @@ def bands(request):
     return render(request, 'front/bands.html')
 
 def community(request):
-
     return render(request, 'front/community.html')
 
 def livepics(request):

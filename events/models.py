@@ -50,60 +50,60 @@ class ContestCalendar(HTMLCalendar):
         return '<td class="%s">%s</td>' % (cssclass, body)
 
 
-# class Event(models.Model):
-#     # day = models.DateField(u'Day of the event', help_text=u'Start Date')
-#     # subject = models.TextField(u'Band Name', help_text=u'Band Name', blank=True, null=True)
-#     day = models.DateField(help_text=u'Start Date')
-#     # day = models.DateField(u'End Date', help_text=u'End Date')
-#     start_time = models.TimeField(help_text=u'Starting time')
-#     end_time = models.TimeField(help_text=u'Ending time')
-#     # all_day_event = models.BooleanField(initial=False)
-#     notes = models.TextField(blank=True, null=True)
-#     # private = models.BooleanField(initial=False)
-#     likes = models.IntegerField(default=0)
-#     space = models.TextField(blank=True, null=True)
-#
-#     class Meta:
-#         verbose_name = 'Scheduling'
-#         verbose_name_plural = 'Scheduling'
-#
-#     def check_overlap(self, fixed_start, fixed_end, new_start, new_end):
-#         overlap = False
-#         if new_start == fixed_end or new_end == fixed_start:  # edge case
-#             overlap = False
-#         elif (new_start >= fixed_start and new_start <= fixed_end) or (
-#                 new_end >= fixed_start and new_end <= fixed_end):  # innner limits
-#             overlap = True
-#         elif new_start <= fixed_start and new_end >= fixed_end:  # outter limits
-#             overlap = True
-#
-#         return overlap
-#
-#     def get_absolute_url(self):
-#         url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
-#         return u'<a href="%s">%s at %s</a>' % (url, str(self.notes), str(self.start_time))
-#
-#     def clean(self):
-#         if self.end_time <= self.start_time:
-#             raise ValidationError('Cant End before it Starts!')
-#
-#         events = Event.objects.filter(day=self.day)
-#         if events.exists():
-#             for event in events:
-#                 if self.check_overlap(event.start_time, event.end_time, self.start_time, self.end_time):
-#                     raise ValidationError(
-#                         'There is an overlap with another event: ' + str(event.day) + ', ' + str(
-#                             event.start_time) + '-' + str(event.end_time))
-#
-#     class IPAddressField(Field):
-#         system_check_deprecated_details = {
-#             'msg': (
-#                 'IPAddressField has been deprecated. Support for it (except '
-#                 'in historical migrations) will be removed in Django 1.9.'
-#             ),
-#             'hint': 'Use GenericIPAddressField instead.',  # optional
-#             'id': 'fields.W900',  # pick a unique ID for your field.
-#         }
+class Event(models.Model):
+    # day = models.DateField(u'Day of the event', help_text=u'Start Date')
+    # subject = models.TextField(u'Band Name', help_text=u'Band Name', blank=True, null=True)
+    day = models.DateField(help_text=u'Start Date')
+    # day = models.DateField(u'End Date', help_text=u'End Date')
+    start_time = models.TimeField(help_text=u'Starting time')
+    end_time = models.TimeField(help_text=u'Ending time')
+    # all_day_event = models.BooleanField(initial=False)
+    notes = models.TextField(blank=True, null=True)
+    # private = models.BooleanField(initial=False)
+    likes = models.IntegerField(default=0)
+    space = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Scheduling'
+        verbose_name_plural = 'Scheduling'
+
+    def check_overlap(self, fixed_start, fixed_end, new_start, new_end):
+        overlap = False
+        if new_start == fixed_end or new_end == fixed_start:  # edge case
+            overlap = False
+        elif (new_start >= fixed_start and new_start <= fixed_end) or (
+                new_end >= fixed_start and new_end <= fixed_end):  # innner limits
+            overlap = True
+        elif new_start <= fixed_start and new_end >= fixed_end:  # outter limits
+            overlap = True
+
+        return overlap
+
+    def get_absolute_url(self):
+        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
+        return u'<a href="%s">%s at %s</a>' % (url, str(self.notes), str(self.start_time))
+
+    def clean(self):
+        if self.end_time <= self.start_time:
+            raise ValidationError('Cant End before it Starts!')
+
+        events = Event.objects.filter(day=self.day)
+        if events.exists():
+            for event in events:
+                if self.check_overlap(event.start_time, event.end_time, self.start_time, self.end_time):
+                    raise ValidationError(
+                        'There is an overlap with another event: ' + str(event.day) + ', ' + str(
+                            event.start_time) + '-' + str(event.end_time))
+
+    class IPAddressField(Field):
+        system_check_deprecated_details = {
+            'msg': (
+                'IPAddressField has been deprecated. Support for it (except '
+                'in historical migrations) will be removed in Django 1.9.'
+            ),
+            'hint': 'Use GenericIPAddressField instead.',  # optional
+            'id': 'fields.W900',  # pick a unique ID for your field.
+        }
 
 class band(models.Model):
     name = models.CharField(blank=True, null=True,max_length= 100)
