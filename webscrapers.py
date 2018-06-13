@@ -47,7 +47,7 @@ class Command(BaseCommand):
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
             space = "The Know"
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:
@@ -85,7 +85,7 @@ class Command(BaseCommand):
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
             space = "Bossanova Ballroom"
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:
@@ -123,7 +123,7 @@ class EventsConfigDF(AppConfig):
             #     day = dayt.replace(2019)
         else:
             continue
-        event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+        event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
         if created:
             print(event, 'Created')
         else:
@@ -171,7 +171,7 @@ class Command(BaseCommand):
                     day = day.replace(2018)
                 else:
                     day = day.replace(2019)
-                event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+                event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
                 if created:
                     print(event, 'Created')
                 else:
@@ -216,7 +216,7 @@ class Command(BaseCommand):
                 day = day.replace(2018)
             else:
                 day = day.replace(2019)
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:
@@ -253,8 +253,8 @@ class Command(BaseCommand):
             notes = " ".join(act.split())
             start_time = "7:00 PM PDT"
             end_time = "11:00 PM PDT"
-            space = "Analog Theather"
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            space = "Analog Theater"
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:
@@ -286,7 +286,7 @@ class Command(BaseCommand):
             else:
                 day = day.replace(2019)
             print(day)
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:
@@ -320,7 +320,7 @@ class Command(BaseCommand):
                 day = day.replace(2018)
             else:
                 day = day.replace(2019)
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day)
+            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
             if created:
                 print(event, 'Created')
             else:

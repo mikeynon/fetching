@@ -9,7 +9,8 @@ from calendar import HTMLCalendar
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from events.models import Event, searchBandSugg, Document
+from events.models import Event
+from events.models import searchBandSugg, Document
 from events.utils import EventCalendar
 
 

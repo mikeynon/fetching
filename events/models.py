@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.forms import Field
 from django.urls import reverse
 from django.db import models
 from django import forms
@@ -93,6 +94,16 @@ class Event(models.Model):
                     raise ValidationError(
                         'There is an overlap with another event: ' + str(event.day) + ', ' + str(
                             event.start_time) + '-' + str(event.end_time))
+
+    class IPAddressField(Field):
+        system_check_deprecated_details = {
+            'msg': (
+                'IPAddressField has been deprecated. Support for it (except '
+                'in historical migrations) will be removed in Django 1.9.'
+            ),
+            'hint': 'Use GenericIPAddressField instead.',  # optional
+            'id': 'fields.W900',  # pick a unique ID for your field.
+        }
 
 class band(models.Model):
     name = models.CharField(blank=True, null=True,max_length= 100)

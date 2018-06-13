@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.utils.text import capfirst
 
 # from Bootstrap import DatetimePicker
-from .models import searchBandSugg, Event, Document, band
+from .models import searchBandSugg, Document, band
+from .models import Event
 
 
 class bandForm(forms.ModelForm):
