@@ -8,6 +8,7 @@
 
         <h1>Upcoming Local Shows:</h1>
         <div style="max-height:400px;overflow:scroll;">
+            <input id="searchbox" type="text" placeholder="Search" />
             {% for x in Event %}
                     <div>
                         <h2>{{ x.notes }}</h2>
@@ -37,6 +38,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>// using jQuery
+    //searchbox func
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie !== '') {

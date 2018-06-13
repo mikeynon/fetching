@@ -38,7 +38,8 @@ urlpatterns = [
                   url(r'^venues/$', views.venues, name='venues'),
                 url(r'^genpop/$', views.genpop, name='genpop'),
                   url(r'^promoter/$', views.calendar, name='promoter'),
-                  url(r'^add_attending/$', views.addLike, name="add_attending")
+                  url(r'^add_attending/$', views.addLike, name="add_attending"),
+                url(r'^search/$', views.search_events, name="search")
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
