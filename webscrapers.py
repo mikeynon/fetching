@@ -307,7 +307,11 @@ class Command(BaseCommand):
         for i in soup.find_all("title"):
             band_name = i.text.upper()
             notes = (re.sub(r'(\ at W).*$', "", band_name))
-            show_date = re.sub(r'(.*(\ on ))', "", band_name)
+            ##ERROR NOT REGEXing
+            #print(notes)
+
+            show_date = re.sub(r'(.*(\ on ))', "", band_name, count=0, flags=0)
+            # print(show_date)
             start_time = re.sub(r'(.*(\w018 ))', "", band_name)
             end_time = "11:00 PM PDT"
             date = re.sub(r'(\ 0).*$', "", show_date)

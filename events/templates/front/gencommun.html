@@ -7,12 +7,13 @@
     <div>
 
         <h1>Upcoming Local Shows:</h1>
-        <div style="max-height:400px;overflow:scroll;">
-            <form class="searchfield" method="get" action="/ajax_search/search/" autocomplete="off">
+    <form class="searchfield" method="get" action="/ajax_search/search/" autocomplete="off">
             {{ searchentryform.q }}
             <input id="searchbuttonmain" type="submit" class="subbtn" value="Search">
             </form>
             <div id='searchdropdown'></div>
+        <div style="max-height:400px;overflow:scroll;">
+
             {% for x in Event %}
                     <div>
                         <h2>{{ x.notes }}</h2>
