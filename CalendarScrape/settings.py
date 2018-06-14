@@ -136,6 +136,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'home'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+AJAX_SEARCH_LIMIT = 8
+AJAX_SEARCH_HELPER = 'app.views.search_helper'
+SEARCH_RESULT_TEMPLATE = 'search_results.html'
 #
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_USER = "mikeynon@gmail.com"

@@ -19,7 +19,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 
 from events import views
@@ -39,7 +39,6 @@ urlpatterns = [
                 url(r'^genpop/$', views.genpop, name='genpop'),
                   url(r'^promoter/$', views.calendar, name='promoter'),
                   url(r'^add_attending/$', views.addLike, name="add_attending"),
-                url(r'^search/$', views.search_events, name="search")
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -50,6 +50,8 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
 class AuthenticationForm(forms.Form):
     """
     Base class for authenticating users. Extend this to get a form that accepts

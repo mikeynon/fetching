@@ -59,14 +59,6 @@ def login_view(request):
 def logout_view(request):
     return render(request, 'front/index.html')
 
-def search_event(request):
-    if request.method == "POST":
-        search_events = request.POST['search_events']
-    else:
-        search_events = ''
-    events = Event.objects.filter(row__contains=search_events)
-    return render('ajax_search.html', {'events' : events})
-
 # def createBand(request):
 #     # if request.POST:
 #     #     form = bandForm(request.POST)

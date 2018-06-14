@@ -13,4 +13,6 @@ $(function(){
     })
 });
 
-function searchSuccess(data, textStatus)
+function searchSuccess(data, textStatus, jqXHR){
+    $('#search_results').html(data);
+}
