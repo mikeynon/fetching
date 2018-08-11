@@ -1,4 +1,5 @@
 import os
+import sqlite3
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CalendarScrape.settings")
 import django
 django.setup()
@@ -13,6 +14,17 @@ from django.core.management.base import BaseCommand
 from events.models import Event, searchBandSugg, User, band
 
 now = time.gmtime(time.time())
+
+###TABLE CLEARER##
+def main():
+    Event.objects.all().delete()
+def drop_table():
+    cursor = sqlite3.connect.cursor()
+    table_name = self.model._meta.db_table
+    sql = "DROP TABLE %s;" % (table_name, )
+    cursor.execute(sql)
+if __name__ == '__main__':
+    main()
 
 #########EVENTS SCRAPERS##########
 ##THE KNOW WORKS
