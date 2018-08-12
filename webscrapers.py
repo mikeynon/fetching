@@ -75,34 +75,50 @@ class Command(BaseCommand):
 
     class EventsConfigBBB(AppConfig):
         name = 'events'
-        data = requests.get('https://www.eventbrite.com/o/bossanova-presents-14578044956')
-        sauce = data.text
-        soup = bs.BeautifulSoup(sauce, "html.parser")
-        for i in soup.find_all("div", {"class": "list-card__body"}):
-            date = i.find("time", {"class": "list-card__date"})
-            dates = date.text
-            strpdate = " ".join(dates.split())
-            band_name = strpdate.split(" ")
-            day1 = band_name[1] + " " + band_name[2]
-            try:
-                day = datetime.datetime.strptime(day1, '%b %d').replace(2018)
-            except ValueError:
-                continue
-            if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
-                day = day.replace(2018)
-            else:
-                day = day.replace(2019)
-            band = i.find("div", {"class": "list-card__title"})
-            act = band.text.upper()
-            notes = " ".join(act.split())
-            start_time = "7:00 PM PDT"
-            end_time = "11:00 PM PDT"
-            space = "Bossanova Ballroom"
-            event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
-            if created:
-                print(event, 'Created')
-            else:
-                print(event, "Exists already")
+        urls = ['http://bossanovaballroom.com/shows/list/?tribe_paged=1&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=2&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=3&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=4&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=5&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=6&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=7&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=8&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=9&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=10&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=11&tribe_event_display=list',
+                'http://bossanovaballroom.com/shows/list/?tribe_paged=12&tribe_event_display=list',
+                ]
+        for i in urls:
+            data = requests.get(i)
+            # data = requests.get('https://www.eventbrite.com/o/bossanova-presents-14578044956')
+            sauce = data.text
+            soup = bs.BeautifulSoup(sauce, "html.parser")
+            # for i in soup.find_all("div", {"class": "list-card__body"}):
+            for i in soup.find_all("div", {"class": "type-tribe_events"}):
+                date = i.find("time", {"class": "list-card__date"})
+                dates = date.text
+                strpdate = " ".join(dates.split())
+                band_name = strpdate.split(" ")
+                day1 = band_name[1] + " " + band_name[2]
+                try:
+                    day = datetime.datetime.strptime(day1, '%b %d').replace(2018)
+                except ValueError:
+                    continue
+                if int(day.strftime('%m')) >= int(datetime.datetime.now().strftime('%m')) <= 12:
+                    day = day.replace(2018)
+                else:
+                    day = day.replace(2019)
+                band = i.find("div", {"class": "list-card__title"})
+                act = band.text.upper()
+                notes = " ".join(act.split())
+                start_time = "7:00 PM PDT"
+                end_time = "11:00 PM PDT"
+                space = "Bossanova Ballroom"
+                event, created = Event.objects.get_or_create(start_time=start_time, end_time=end_time, notes=notes, day=day, space=space)
+                if created:
+                    print(event, 'Created')
+                else:
+                    print(event, "Exists already")
 
 ## DOUG FIR WORKS
 class EventsConfigDF(AppConfig):
@@ -151,12 +167,12 @@ class Command(BaseCommand):
 
     class EventsConfigDa(AppConfig):
         name = 'events'
-        urls = ['https://danteslive.com/calendar/?cal-month=2&cal-year=2018#content',
-                'https://danteslive.com/calendar/?cal-month=3&cal-year=2018#content',
-                'https://danteslive.com/calendar/?cal-month=4&cal-year=2018#content',
-                'https://danteslive.com/calendar/?cal-month=5&cal-year=2018#content',
-                'https://danteslive.com/calendar/?cal-month=6&cal-year=2018#content',
-                'https://danteslive.com/calendar/?cal-month=7&cal-year=2018#content',
+        urls = ['https://danteslive.com/calendar/?cal-month=2&cal-year=2019#content',
+                'https://danteslive.com/calendar/?cal-month=3&cal-year=2019#content',
+                'https://danteslive.com/calendar/?cal-month=4&cal-year=2019#content',
+                'https://danteslive.com/calendar/?cal-month=5&cal-year=2019#content',
+                'https://danteslive.com/calendar/?cal-month=6&cal-year=2019#content',
+                'https://danteslive.com/calendar/?cal-month=7&cal-year=2019#content',
                 'https://danteslive.com/calendar/?cal-month=8&cal-year=2018#content',
                 'https://danteslive.com/calendar/?cal-month=9&cal-year=2018#content',
                 'https://danteslive.com/calendar/?cal-month=10&cal-year=2018#content',
