@@ -95,7 +95,7 @@ class Command(BaseCommand):
             soup = bs.BeautifulSoup(sauce, "html.parser")
             # for i in soup.find_all("div", {"class": "list-card__body"}):
             for i in soup.find_all("div", {"class": "type-tribe_events"}):
-                date = i.find("time", {"class": "list-card__date"})
+                date = i.find("span", {"class": "tribe-event-date-start"})
                 dates = date.text
                 strpdate = " ".join(dates.split())
                 band_name = strpdate.split(" ")
@@ -108,7 +108,7 @@ class Command(BaseCommand):
                     day = day.replace(2018)
                 else:
                     day = day.replace(2019)
-                band = i.find("div", {"class": "list-card__title"})
+                band = i.find("a", {"class": "tribe-event-url"})
                 act = band.text.upper()
                 notes = " ".join(act.split())
                 start_time = "7:00 PM PDT"
