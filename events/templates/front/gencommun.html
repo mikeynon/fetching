@@ -5,7 +5,6 @@
 
 
     <div>
-
         <h1>Upcoming Local Shows:</h1>
     <form class="searchfield" method="get" action="/ajax_search/search/" autocomplete="off">
             {{ searchentryform.q }}
@@ -13,7 +12,6 @@
             </form>
             <div id='searchdropdown'></div>
         <div style="max-height:400px;overflow:scroll;">
-
             {% for x in Event %}
                     <div>
                         <h2>{{ x.notes }}</h2>
@@ -24,13 +22,11 @@
                     </div>
             {% endfor %}
         </div>
-
         {% if user.is_authenticated %}
             <div id="Band Add" style="width:350px;">
                 <p><strong>{{ user.username }}</strong>, as member of the HXC Community, you are called upon, and
                     entitled, to suggest new elements for us to track and post. Below you can suggest websites, bands,
                     venues and record labels for us to follow.</p>
-
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -39,7 +35,6 @@
             </div>
         {% endif %}
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>// using jQuery
     //searchbox func
