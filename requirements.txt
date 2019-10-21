@@ -52,7 +52,7 @@ six==1.11.0
 sockjs-tornado==1.0.3
 tinydb==3.7.0
 tornado==4.5.3
-Twisted==17.9.0
+Twisted==19.7.0
 urllib3==1.22
 vine==1.1.4
 w3lib==1.19.0
